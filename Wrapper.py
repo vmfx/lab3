@@ -32,15 +32,11 @@ class ConditionalDecorator(Decorator):
         else:
             return "Operation blocked"
 
-
 if __name__ == "__main__":
 
     component = ConcreteComponent()
-
     decorator_a = ConcreteDecoratorA(component)
-
     decorator_b = ConcreteDecoratorB(decorator_a)
-
     conditional_decorator = ConditionalDecorator(decorator_b, False)
 
-    print(conditional_decorator.operation())
+    print(conditional_decorator.operation())  
