@@ -8,6 +8,8 @@ class ConcreteComponent(Component):
 
 class Decorator(Component):
     def __init__(self, component):
+        if not isinstance(component, Component):
+            raise TypeError("Component must be an instance of Component class.")
         self._component = component
 
     def operation(self):
@@ -17,12 +19,15 @@ class ConcreteDecoratorA(Decorator):
     def operation(self):
         return f"Concrete decorator A ({self._component.operation()})"
 
+
 class ConcreteDecoratorB(Decorator):
     def operation(self):
         return f"Concrete decorator B ({self._component.operation()})"
 
 class ConditionalDecorator(Decorator):
     def __init__(self, component, condition):
+        if not isinstance(component, Component):
+            raise TypeError("Component must be an instance of Component class.")
         super().__init__(component)
         self.condition = condition
 
@@ -39,4 +44,6 @@ if __name__ == "__main__":
     decorator_b = ConcreteDecoratorB(decorator_a)
     conditional_decorator = ConditionalDecorator(decorator_b, False)
 
-    print(conditional_decorator.operation())  
+    print(conditional_decorator.operation())
+
+
